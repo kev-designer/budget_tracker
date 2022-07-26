@@ -1,22 +1,27 @@
 import 'package:budget_tracker/model/transaction_item.dart';
+import 'package:budget_tracker/services/theme_service.dart';
+import 'package:budget_tracker/widget/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class TransactionCard extends StatelessWidget {
   final TransactionItem item;
-  // final String text;
-  // final double amount;
-  // final bool isExpense;
   const TransactionCard({required this.item, Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final themeService = Provider.of<ThemeService>(context);
     return Padding(
       padding: const EdgeInsets.only(bottom: 5.0, top: 5.0),
       child: Container(
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.background,
           borderRadius: BorderRadius.circular(15.0),
+          border: Border.all(
+            color:
+                themeService.darkTheme ? ColorData.black : ColorData.lightgrey,
+          ),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(.05),
